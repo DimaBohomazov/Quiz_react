@@ -2,7 +2,7 @@ import React from "react";
 import classes from "./AnswersItem.css"
 
 const AnswersItem = props => {
-    const cls = [classes.AnswersItem]
+    const cls = [classes.AnswersItem];
     if( props.state ){
         cls.push(classes[props.state])
     }
