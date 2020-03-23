@@ -35,8 +35,9 @@ class Quiz extends Component{
         ]
     };
 
-    onAnswerClickHandler = answerId => {
 
+
+    onAnswerClickHandler = answerId => {
         if(this.state.answerState){
             const key = Object.keys(this.state.answerState)[0];
             console.log('key', key);
@@ -76,7 +77,6 @@ class Quiz extends Component{
                 results   // results: results
             })
         }
-
     };
 
     isQuizFinished () {
@@ -90,6 +90,11 @@ class Quiz extends Component{
             results: {}
         })
     };
+
+    componentDidMount() {
+        console.log('quizID=', this.props.match.params.id)
+    }
+
 
     render() {
         return(
