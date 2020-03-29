@@ -5,6 +5,7 @@ import Select from "../../components/UI/Select/Select";
 import {createControl, validate, validateForm} from '../../form/formFramework'
 import Input from "../../components/UI/Input/Input";
 import Auxiliary from '../../hoc/Auxiliary/Auxiliary'
+import axios from'../../axios/axios-quiz'
 
 function createOptionControl(questionNumber) {
     return createControl({
@@ -19,10 +20,10 @@ function createFormControls(){
             label: 'Enter a question',
             errorMessage: 'The question cannot be empty.'
         }, {required: true}),
-        optionFirst: createOptionControl('First'),
-        optionSecond: createOptionControl('Second'),
-        optionThird: createOptionControl('Third'),
-        optionFourth: createOptionControl('Fourth'),
+        optionFirst: createOptionControl(1),
+        optionSecond: createOptionControl(2),
+        optionThird: createOptionControl(3),
+        optionFourth: createOptionControl(4),
     }
 }
 
@@ -62,9 +63,31 @@ class QuizCreator extends Component {
             formControls: createFormControls()
         })
     };
-    createQuizHandler = event => {
+    createQuizHandler = async event => {
         event.preventDefault();
-        console.log(this.state.quiz)
+        try{
+
+            await axios.post(
+                '/quizes.json',
+                this.state.quiz);
+
+            this.setState({
+                quiz: [],
+                isFormValid: false,
+                rightAnswerId: 1,
+                formControls: createFormControls()
+            })
+        } catch (e) {
+            console.log(e)
+        }
+
+       /* axios.post('https://react-quiz-68682.firebaseio.com/quizes.json', this.state.quiz)
+            .then(response => {
+                console.log(response)
+            })
+            .catch(error => console.log(error))*/
+
+
     };
     changeHandler = (value, controlName) => {
         const formControls = {...this.state.formControls};
