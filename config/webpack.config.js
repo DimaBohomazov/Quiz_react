@@ -68,7 +68,7 @@ module.exports = function(webpackEnv) {
   // common function to get style loaders
   const getStyleLoaders = (cssOptions, preProcessor) => {
     const loaders = [
-      isEnvDevelopment && require.resolve('style-Loader'),
+      isEnvDevelopment && require.resolve('style-loader'),
       isEnvProduction && {
         loader: MiniCssExtractPlugin.loader,
         // css is located in `static/css`, use '../../' to locate index.html folder
@@ -78,14 +78,14 @@ module.exports = function(webpackEnv) {
           : {},
       },
       {
-        loader: require.resolve('css-Loader'),
+        loader: require.resolve('css-loader'),
         options: cssOptions,
       },
       {
         // Options for PostCSS as we reference these options twice
         // Adds vendor prefixing based on your specified browser support in
         // package.json
-        loader: require.resolve('postcss-Loader'),
+        loader: require.resolve('postcss-loader'),
         options: {
           // Necessary for external CSS imports to work
           // https://github.com/facebook/create-react-app/issues/2677
@@ -110,7 +110,7 @@ module.exports = function(webpackEnv) {
     if (preProcessor) {
       loaders.push(
         {
-          loader: require.resolve('resolve-url-Loader'),
+          loader: require.resolve('resolve-url-loader'),
           options: {
             sourceMap: isEnvProduction && shouldUseSourceMap,
           },
@@ -336,7 +336,7 @@ module.exports = function(webpackEnv) {
                 resolvePluginsRelativeTo: __dirname,
                 
               },
-              loader: require.resolve('eslint-Loader'),
+              loader: require.resolve('eslint-loader'),
             },
           ],
           include: paths.appSrc,
@@ -351,7 +351,7 @@ module.exports = function(webpackEnv) {
             // A missing `test` is equivalent to a match.
             {
               test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
-              loader: require.resolve('url-Loader'),
+              loader: require.resolve('url-loader'),
               options: {
                 limit: imageInlineSizeLimit,
                 name: 'static/media/[name].[hash:8].[ext]',
@@ -362,7 +362,7 @@ module.exports = function(webpackEnv) {
             {
               test: /\.(js|mjs|jsx|ts|tsx)$/,
               include: paths.appSrc,
-              loader: require.resolve('babel-Loader'),
+              loader: require.resolve('babel-loader'),
               options: {
                 customize: require.resolve(
                   'babel-preset-react-app/webpack-overrides'
@@ -395,7 +395,7 @@ module.exports = function(webpackEnv) {
             {
               test: /\.(js|mjs)$/,
               exclude: /@babel(?:\/|\\{1,2})runtime/,
-              loader: require.resolve('babel-Loader'),
+              loader: require.resolve('babel-loader'),
               options: {
                 babelrc: false,
                 configFile: false,
@@ -464,7 +464,7 @@ module.exports = function(webpackEnv) {
                   importLoaders: 3,
                   sourceMap: isEnvProduction && shouldUseSourceMap,
                 },
-                'sass-Loader'
+                'sass-loader'
               ),
               // Don't consider CSS imports dead code even if the
               // containing package claims to have no side effects.
@@ -484,7 +484,7 @@ module.exports = function(webpackEnv) {
                     getLocalIdent: getCSSModuleLocalIdent,
                   },
                 },
-                'sass-Loader'
+                'sass-loader'
               ),
             },
             // "file" Loader makes sure those assets get served by WebpackDevServer.
@@ -493,7 +493,7 @@ module.exports = function(webpackEnv) {
             // This Loader doesn't use a "test" so it will catch all modules
             // that fall through the other loaders.
             {
-              loader: require.resolve('file-Loader'),
+              loader: require.resolve('file-loader'),
               // Exclude `js` files to keep "css" Loader working as it injects
               // its runtime that would otherwise be processed through "file" Loader.
               // Also exclude `html` and `json` extensions so they get processed
