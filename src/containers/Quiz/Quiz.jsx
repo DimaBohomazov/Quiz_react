@@ -10,7 +10,7 @@ class Quiz extends Component{
 
     componentDidMount() {
         this.props.fetchQuizById(this.props.match.params.id)
-        console.log('quizID=', this.props.match.params.id)
+
     }
     componentWillUnmount() {
         this.props.retryQuiz()
